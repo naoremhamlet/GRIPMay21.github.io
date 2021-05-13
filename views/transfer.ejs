@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Transfer</title>
+    </head>
+    <style>
+        body{
+            background-color: skyblue;
+        }
+        #personal_details{
+            color: white;
+            display: table;
+            padding: 5px;
+        }
+        main{
+            margin-top: 4.5vh;
+            margin-right: 3vh;
+            background-color: white;
+            width: 30%;
+            height: 75vh;
+            float: left;
+            box-shadow: 2px 2px 5px black, 0px 0px 10px black;
+            border-radius: 8px;
+        }
+        #personal_details_fieldset{
+            padding: 20px;
+            margin: 10px;
+            border: solid 3px red;
+            border-radius: 5px;
+            border-style: dotted;
+            box-shadow: 3px 3px 2px #524f4f, 2px 2px 5px black;
+            height: 30vh;
+        }
+        #personal_details{
+            margin: 10px 0px 10px 10px;
+            color: red;
+        }
+        .row label{
+            display: table-cell;
+            padding: 2px;
+            text-align: right;
+            font: 400 20px Helvetica;
+            text-shadow: 1px 1px 1px black, 0.5px 0.5px 1px black;
+        }
+        .row p{
+            display: table-cell; 
+            padding: 5px;
+            width: 20vw;
+            font: 400 17px Arial;
+            color: black;
+        }
+        button:hover{
+            background-color: rgb(121, 118, 118)
+        }
+        button:active{
+            border: solid 1px black;
+        }
+        #customers{
+            margin-top: 4.5vh;
+            margin-right: 3vh;
+            background-color: white;
+            width: 30%;
+            height: fit-content;
+            min-height: 75vh;
+            float: right;
+            box-shadow: 2px 2px 5px black, 0px 0px 10px black;
+            border-radius: 8px; 
+        }
+        #transferTable{
+            margin-top: 4.5vh;
+            margin-left: 3vh;
+            width: 30%;
+            height: fit-content;
+            min-height: 73vh;
+            float: left;
+            background-color: #fff;
+            padding: 1%;
+            padding-top: 0;
+            box-shadow: 0 0 2px black, 1px 1px 5px black;
+            border-radius: 3px;
+        }
+        #table{
+            border-collapse: collapse;
+            width: 100%;
+        }
+        #table thead{
+            background-color: black;
+            border-radius: 3px 3px 0 0;
+        }
+        #table thead td{
+            padding: 2px;
+            color: #ffff;
+        }
+    </style>
+
+    <body>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/customers">Customers</a></li>
+        </ul>
+        <p style="color: red; margin: 0; size: small">**Do not refresh the page after a transaction as it might cause repeatition in transaction. Also <b><i>Select the Name</i></b> from the customers name only.**</p>
+        <main class="show">
+            <div id="personal_details">
+                   
+                   <fieldset id="personal_details_fieldset">
+                       <legend style="font:500 15px Arial;color: blue;text-shadow: 1px 1px 1px black">Personal detail</legend>
+                       <div class="row">
+                           <label for="name">Name: </label>
+                           <p id="name"><%= customer.name %></p><br><br>
+                       </div>
+                       <div class="row">
+                           <label for="email">Email: </label>
+                           <p id="show_member_name"><%= customer.email %></p><br><br>
+                       </div>
+                       <div class="row">
+                           <label for="balance">Balance: </label>
+                           <p id="balance"><%= customer.balance %></p><br><br>
+                       </div>
+                   </fieldset>
+                   <form style="justify-content: center;" method="POST">
+                    <fieldset style="color: black; text-align: center; border-radius: 5px; margin-top: 3vh;  background-color: lightgreen;">
+                       <P>Please Enter the name of Customer to Transfer</P>
+                       <input type="text" placeholder="Name of Recipient" size="40" id="recipient" name="recipient" required><br><br>
+                       <label for="amount" >Amount: </label>
+                       <input type ="number" placeholder="INR" id="amount" name="amount" required><br><br>
+                       <button id="transferButton">Transfer</button>
+                    </fieldset>
+                   </form>
+                   
+               </div>
+       </main>
+       <div id="customers">
+           <h3 style="text-align: center;">Name of Customers</h3>
+           <% for(var i=0; i < customers.length; i++){ %>
+            <p style="margin-left: 5%; font: 400 medium Helvetica;"><%= customers[i].name %></p>
+        <% } %>
+
+       </div>
+       <div id="transferTable">
+           <h4 style="text-align: center;">Transfer History</h4>
+            <table id="table">
+                <thead>
+                    <tr>
+                        <td style="text-align: left; width: 15%;">&nbsp</td>
+                        <td style="text-align: left; width: 50%;">Customer name</td>
+                        <td style="text-align: right; width: 15%;">Amount&nbsp</td>
+                    </tr>
+                </thead>
+                <tbody id="transferTableDataBody">
+                    <% for(var i=0; i < data.length; i++){ %>
+                        <% if(data[i].direction == 'To'){ %>
+                            <tr style="background-color: rgb(241, 179, 179)">
+                                <td>&nbsp<%= data[i].direction %></td>
+                                <td><%= data[i].recipient %></td>
+                                <td style="text-align: right;"><%= data[i].amount %>&nbsp</td>
+                            </tr>
+                            <% continue; %>
+                        <% } %>
+                            <tr style="background-color: rgb(180, 245, 205)">
+                                <td>&nbsp<%= data[i].direction %></td>
+                                <td><%= data[i].recipient %></td>
+                                <td style="text-align: right;"><%= data[i].amount %>&nbsp</td>
+                            </tr>
+                        
+                    <% } %>
+                </tbody>
+            </table>
+       </div> 
+    </body>
+</html>

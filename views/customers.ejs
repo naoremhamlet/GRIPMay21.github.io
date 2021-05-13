@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Customers</title>
+    </head>
+    <style>
+        body{
+            align-content: center; 
+            background-color: skyblue
+        }
+        h1{
+            text-align: center; 
+            font-size: 5vh;
+            font-family: Verdana;
+            color: rgb(11, 197, 104);
+        }
+        .customers_btn{
+            width: 25%;
+            height: 4vh;
+            margin: 0.5%;
+            display:list-item;
+            text-align: left;
+            border: solid 0.5px #dadada;
+            background-color: white;
+            border-radius: 3px;
+        }
+        .customers_btn:hover{
+            background-color: black;
+            color: white;
+            border: solid 0.5px #dadada;
+        }
+    </style>
+    
+    <body>
+        <ul>
+            <li><a href="/home">Home</a></li>
+        </ul>
+        <h1>
+            Customers
+        </h1>
+        <p>
+            Select a customer to view and transfer balance.
+        </p>
+        <div id = "button_div">
+           <% for(var i=0; i < customers.length; i++){ %>
+            <button class="customers_btn" onclick="location.href='/customers/<%= customers[i].name %>'"><%= customers[i].name %></button>
+        <% } %>
+        </div>
+    </body>
+</html>

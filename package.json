@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.6",
+    "mongoose": "^5.12.7",
+    "nedb": "^1.8.0"
+  },
+  "name": "gripwebdevelopmenttask1",
+  "version": "1.0.0",
+  "description": "web development internship task",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Naorem Hemlet",
+  "license": "ISC"
+}

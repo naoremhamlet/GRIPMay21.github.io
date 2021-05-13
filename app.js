@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 var path = require('path');
+const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -20,7 +21,7 @@ mongoose.connect(uri,{
     useFindAndModify: false
 }).then( ()=> {
     console.log("Connected to database");
-    app.listen(3000);
+    app.listen(port);
     console.log('Listening in localhost:3000');
 }).catch( (err) =>{console.log(err);});
 
